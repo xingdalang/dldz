@@ -1,11 +1,12 @@
-<#include "../common/basePath.ftl"/>
 									    <#list list as order>
 											<tr>
-											<td>${order_index+1}</td>
-					   						<td>${(order.createtimeTime?string('MM-dd'))!''}</td>
-					   						<td>
-					   						${ (order.status == 0) ?string('运输中','已收货')} 
+											<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${order_index+1}</td>
+					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.createtime?string('MM-dd'))!''}</td>
+					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.msg)!''} </td>
+					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+					   							${(order.state == 0) ?string('运输中','已收货')} 
 					   						</td>
+					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a href="#" onclick="express(${(order.trans)!''})">${(order.address)!''}</a></td>
 											</tr>
 										</#list>
 							
