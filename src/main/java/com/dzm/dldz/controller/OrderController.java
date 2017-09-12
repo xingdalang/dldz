@@ -1,21 +1,25 @@
 package com.dzm.dldz.controller;
 
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dzm.dldz.bean.order.Order;
+import com.dzm.dldz.service.order.IOrderService;
+import com.dzm.dldz.util.ReturnDate;
+
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-	@RequestMapping("/get")
-	@ResponseBody
-	public String get() {
-		return "get";
-	}
+	@Autowired
+	IOrderService orderService;
+	
 
 	@RequestMapping("/hello")
 	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
@@ -24,9 +28,22 @@ public class OrderController {
 		return "hello";
 	}
 
-	@RequestMapping("/ftl")
+	@RequestMapping("/list")
 	public String hello(Map<String, Object> map) {
-		map.put("name", "[Angel -- 守护天使]");
 		return "order";
+	}
+	
+	@RequestMapping("/listBody")
+	public String queryOrder(Model model){
+		List<Order> list = orderService.queryOrder();
+		model.addAttribute("list", list);
+		return "listBody";
+	}
+	
+	@RequestMapping("/add")
+	@ResponseBody
+	public ReturnDate addOrder(Order order){
+		ReturnDate re = orderService.addOrder(order);
+		return re;
 	}
 }

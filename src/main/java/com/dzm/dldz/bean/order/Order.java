@@ -5,7 +5,7 @@ import java.util.Date;
 public class Order {
     private Long orderid;
 
-    private Byte status;
+    private Integer state;
 
     private String trans;
 
@@ -33,12 +33,12 @@ public class Order {
         this.orderid = orderid;
     }
 
-    public Byte getStatus() {
-        return status;
+    public Integer getState() {
+        return state;
     }
 
-    public void setStatus(Byte status) {
-        this.status = status;
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public String getTrans() {

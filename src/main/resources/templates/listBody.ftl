@@ -1,19 +1,11 @@
 <#include "../common/basePath.ftl"/>
-									    <#list clazzList as clazz>
+									    <#list list as order>
 											<tr>
-											<td>${clazz_index+1}</td>
-					   						<td>${clazz.clazzName}</td>
+											<td>${order_index+1}</td>
+					   						<td>${(order.createtimeTime?string('MM-dd'))!''}</td>
 					   						<td>
-					   							<a href="javascript:void(0);"onclick="showPic('${clazz.clazzPicUrl}')" >预览</a>
+					   						${ (order.status == 0) ?string('运输中','已收货')} 
 					   						</td>
-					   						<td>${clazz.clazzSequence}</td>
-					   						<#-- <td>
-					   						${ (clazz.clazzState == 0) ?string('隐藏','显示')} 
-					   						</td> -->
-					   						<td>
-									        	<a href="javascript:void(0);" onclick="deleteClazz('${clazz.clazzId}')">删除</a>
-			 						        	<a href="${basePath}/mgr/clazz/edit.do?clazzId=${clazz.clazzId}">修改</a>
-									        </td>
 											</tr>
 										</#list>
 							
