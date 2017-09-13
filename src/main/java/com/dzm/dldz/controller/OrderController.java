@@ -23,18 +23,11 @@ public class OrderController {
 	IOrderService orderService;
 	
 
-	@RequestMapping("/hello")
-	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
-			Model model) {
-		model.addAttribute("name", name);
-		return "hello";
-	}
-
 	@RequestMapping("/list")
 	public String hello(Map<String, Object> map,Model model) {
 		OrderQO qo = new OrderQO();
 		model.addAttribute("qo", qo);
-		return "order";
+		return "order/order";
 	}
 	
 	@RequestMapping("/listBody")
@@ -45,7 +38,7 @@ public class OrderController {
 		List<Order> list = orderService.queryOrder();
 		model.addAttribute("list", list);
 		model.addAttribute("PageResult", qo);
-		return "listBody";
+		return "order/listBody";
 	}
 	
 	@RequestMapping("/add")
