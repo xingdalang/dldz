@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.1.43</version>
+			<version>1.1.42</version>
 		</dependency>
 
 		<!-- 引入freeMarker的依赖包. -->
