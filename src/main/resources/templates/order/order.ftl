@@ -6,10 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="fyunli">
 <title>订单管理</title>
-	<link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://malsup.github.io/min/jquery.form.min.js"></script>
+	<link href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery.form.min.js"></script>
+	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery.twbsPagination.min.js"></script>
+    <script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap-min.js"></script>
+	<script type="text/javascript" src="/js/order/order.js"></script>
+<#-- 	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/order/order.js"></script> -->
     <style>
         .input{ width: 60%; border: 1px solid #ccc; line-height:100%; height: 34px;border-radius: 4px; margin:5px 10px 10px 10px;}
         .select{ width: 20%; border: 1px solid #ccc; line-height:100%; height: 34px;border-radius: 4px; margin:5px 10px 10px 10px;}
@@ -25,7 +28,7 @@
 			<input type="hidden" id="currentPage" name="currentPage" value="1"/>
 			<div class="form-group" >
 				类型:
-				<select class="select" name="orderState" id="orderState">
+				<select class="select" style="margin: 0px 10px 0px 10px;" name="orderState" id="orderState">
 			    	<option value="-1">全部</option>
 			    	<#if qo.orderState??>
 				    	<option value="0" ${ (qo.orderState == 0) ?string('selected="selected"','')}>在路上</option>
@@ -39,15 +42,15 @@
 			</div>
 	</form>
 
-	<div class="panel panel-default">
-		<table class="table table-hover"  style="table-layout:fixed">
+	<div class="" >
+		<table class="table " style="table-layout:fixed; vertical-align:middle; text-align:center;">
 			<thead>
 				<tr>
-					<th width="8%">序号</th>
-					<th width="10%">订单日</th>
-					<th width="10%">客户</th>
-					<th width="10%">快递状态</th>
-					<th width="10%">到哪了</th>
+					<th style="text-align:center;" width="7%">序号</th>
+					<th style="text-align:center;" width="10%">时间</th>
+					<th style="text-align:center;" width="10%">客户</th>
+					<#-- <th width="10%">状态</th> -->
+					<th style="text-align:center;" width="20%">到哪了</th>
 				</tr>
 			</thead>
 			<tbody id="listBody">
@@ -81,7 +84,7 @@
 			</div>
 		</div>
 		
-	<div align="center" style="position: fixed; left:10; bottom: 10;">
+	<div align="center" style="position: auto; left:10; bottom: 10;">
 	    <table style="font-size:13px; line-height:24px; ">
 	        <tr>
 	            <td>
@@ -92,42 +95,4 @@
 	    </table>
 	</div>
 </body>
-<script type="text/javascript">
-	var searchForm = $("#searchForm");
-	var listBody = $("#listBody");
-	searchForm.ajaxForm(function(data){
-		listBody.hide();
-		listBody.html(data);
-		listBody.show(500);
-	});
-	searchForm.submit();
-	
-	$("#addOrder").click(function(){
-		 $("#addModal").modal();
-	})
-	$("#addSubmit").click(function(){
-		var trans = $("#trans").val();
-		var msg = $("#msg").val();
-		$.ajax({
-			url: "/order/add",            
-	        type: "POST",                      
-	        data: { msg: msg,
-	        		trans :trans
-	        		},
-	        dataType: "json",
-	        success: function (response) {
-	        	$.messager.confirm('提示',response.desc,function(result){
-	        		window.location.reload();
-	        	})
-	        },
-	        fail: function (status) {
-	        }
-	    })
-	})
-	})
-	
-	function express(trans){
-	window.location.href='https://m.kuaidi100.com/index_all.html?type=&postid='+trans+'&callbackurl='+window.location.href;
-	}
-</script>
 </html>

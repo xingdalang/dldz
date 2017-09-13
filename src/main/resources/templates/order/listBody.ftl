@@ -1,12 +1,22 @@
 									    <#list list as order>
 											<tr>
-											<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${order_index+1}</td>
-					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.createtime?string('MM-dd'))!''}</td>
-					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.msg)!''} </td>
+											<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+														${order_index+1}<br/> &nbsp;
+											</td>
 					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
-					   							${(order.state == 0) ?string('运输中','已收货')} 
+					   							${(order.createtime?string('MM-dd'))!''}<br/>
+					   							星期一
 					   						</td>
-					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a href="#" onclick="express(${(order.trans)!''})">${(order.address)!''}</a></td>
+					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.msg)!''} </td>
+					   						<#-- <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+					   							${(order.state == 0) ?string('运输中','已收货')} 
+					   						</td> -->
+					   						<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+						   						<a href="#" onclick="express(${(order.trans)!''})">
+						   							${(order.address)!''}
+						   						</a><br/>
+						   						${(order.trans)!''}
+					   						</td>
 											</tr>
 										</#list>
 							

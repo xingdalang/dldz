@@ -23,9 +23,14 @@ $(function(){
 	        		},
 	        dataType: "json",
 	        success: function (response) {
-	        	$.messager.confirm('提示',response.desc,function(result){
+	        	if(response.result){
 	        		window.location.reload();
-	        	})
+	        	}else{
+	        		
+	        	}
+	        	/*$.messager.confirm('提示',response.result,function(result){
+	        		window.location.reload();
+	        	})*/
 	        },
 	        fail: function (status) {
 	        }

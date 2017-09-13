@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title></title>
-    <link rel="stylesheet" href="/css/login/common.css"/>
-    <link rel="stylesheet" href="/css/login/login.css"/>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://malsup.github.io/min/jquery.form.min.js"></script>
+    <link rel="stylesheet" href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/css/common.css"/>
+    <link rel="stylesheet" href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/css/login.css"/>
+	<link rel="stylesheet" href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap.css">
+	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap-min.js"></script>
+	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery.form.min.js"></script>
     <script type="text/javascript">
 	    $(function(){
 	    	$("#submit").click(function(){
