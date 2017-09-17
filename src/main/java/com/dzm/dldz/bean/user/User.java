@@ -5,7 +5,7 @@ public class User {
 
     private String username;
 
-    private String pass;
+    private String password;
 
     public Long getUserid() {
         return userid;
@@ -20,14 +20,14 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

@@ -3,6 +3,7 @@ package com.dzm.dldz.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class OrderController {
 	@Autowired
 	IOrderService orderService;
 	
-
+	@RequiresPermissions(value = { "add" })
 	@RequestMapping("/list")
 	public String hello(Map<String, Object> map,Model model) {
 		OrderQO qo = new OrderQO();

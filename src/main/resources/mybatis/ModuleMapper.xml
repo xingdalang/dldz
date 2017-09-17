@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dzm.dldz.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.dzm.dldz.bean.user.User" >
-    <id column="userid" property="userid" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
+<mapper namespace="com.dzm.dldz.dao.ModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.dzm.dldz.bean.module.Module" >
+    <id column="moduleid" property="moduleid" jdbcType="BIGINT" />
+    <result column="modulename" property="modulename" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    userid, username, password
+    moduleid, modulename
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dzm.dldz.bean.user.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dzm.dldz.bean.module.ModuleExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_user
+    from t_module
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +83,56 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_user
-    where userid = #{userid,jdbcType=BIGINT}
+    from t_module
+    where moduleid = #{moduleid,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_user
-    where userid = #{userid,jdbcType=BIGINT}
+    delete from t_module
+    where moduleid = #{moduleid,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.dzm.dldz.bean.user.UserExample" >
-    delete from t_user
+  <delete id="deleteByExample" parameterType="com.dzm.dldz.bean.module.ModuleExample" >
+    delete from t_module
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dzm.dldz.bean.user.User" >
-    insert into t_user (userid, username, password
-      )
-    values (#{userid,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.dzm.dldz.bean.module.Module" >
+    insert into t_module (moduleid, modulename)
+    values (#{moduleid,jdbcType=BIGINT}, #{modulename,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dzm.dldz.bean.user.User" >
-    insert into t_user
+  <insert id="insertSelective" parameterType="com.dzm.dldz.bean.module.Module" >
+    insert into t_module
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        userid,
+      <if test="moduleid != null" >
+        moduleid,
       </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="password != null" >
-        password,
+      <if test="modulename != null" >
+        modulename,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        #{userid,jdbcType=BIGINT},
+      <if test="moduleid != null" >
+        #{moduleid,jdbcType=BIGINT},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="modulename != null" >
+        #{modulename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.dzm.dldz.bean.user.UserExample" resultType="java.lang.Integer" >
-    select count(*) from t_user
+  <select id="countByExample" parameterType="com.dzm.dldz.bean.module.ModuleExample" resultType="java.lang.Integer" >
+    select count(*) from t_module
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_user
+    update t_module
     <set >
-      <if test="record.userid != null" >
-        userid = #{record.userid,jdbcType=BIGINT},
+      <if test="record.moduleid != null" >
+        moduleid = #{record.moduleid,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.modulename != null" >
+        modulename = #{record.modulename,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,30 +140,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_user
-    set userid = #{record.userid,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+    update t_module
+    set moduleid = #{record.moduleid,jdbcType=BIGINT},
+      modulename = #{record.modulename,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dzm.dldz.bean.user.User" >
-    update t_user
+  <update id="updateByPrimaryKeySelective" parameterType="com.dzm.dldz.bean.module.Module" >
+    update t_module
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="modulename != null" >
+        modulename = #{modulename,jdbcType=VARCHAR},
       </if>
     </set>
-    where userid = #{userid,jdbcType=BIGINT}
+    where moduleid = #{moduleid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dzm.dldz.bean.user.User" >
-    update t_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
-    where userid = #{userid,jdbcType=BIGINT}
+  <update id="updateByPrimaryKey" parameterType="com.dzm.dldz.bean.module.Module" >
+    update t_module
+    set modulename = #{modulename,jdbcType=VARCHAR}
+    where moduleid = #{moduleid,jdbcType=BIGINT}
   </update>
 </mapper>

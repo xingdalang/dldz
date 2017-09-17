@@ -19,5 +19,10 @@ public class UserSerivceImpl implements IUserService{
 		List<User> list = userMapper.selectByExample(example);
 		return list;
 	}
+	@Override
+	public List<User> selectByExample(UserExample example) {
+		List<User> list = userMapper.selectByExample(example);
+		return list;
+	}
 
 }
