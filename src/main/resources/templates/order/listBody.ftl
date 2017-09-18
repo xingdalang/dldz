@@ -7,7 +7,7 @@
 					   							${(order.createtime?string('MM-dd'))!''}<br/>
 					   							星期一
 					   						</td>
-					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.msg)!''} </td>
+					   						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${(order.customer)!''} </td>
 					   						<#-- <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
 					   							${(order.state == 0) ?string('运输中','已收货')} 
 					   						</td> -->

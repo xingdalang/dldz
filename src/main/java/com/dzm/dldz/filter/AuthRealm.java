@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.security.auth.login.AccountException;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,14 +17,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.dzm.dldz.bean.module.Module;
-import com.dzm.dldz.bean.role.Role;
-import com.dzm.dldz.bean.user.User;
-import com.dzm.dldz.bean.user.UserExample;
-import com.dzm.dldz.bean.user.UserExample.Criteria;
-import com.dzm.dldz.service.module.IModuleService;
-import com.dzm.dldz.service.role.IRoleService;
-import com.dzm.dldz.service.user.IUserService;
+import com.alibaba.fastjson.JSON;
 //http://www.cnblogs.com/hlhdidi/p/6376457.html
 public class AuthRealm extends AuthorizingRealm{
 	 @Autowired
@@ -58,11 +53,31 @@ public class AuthRealm extends AuthorizingRealm{
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		 UsernamePasswordToken utoken=(UsernamePasswordToken) token;//获取用户输入的token
 	        String username = utoken.getUsername();
+	        char[] password = utoken.getPassword();
 	        UserExample example = new UserExample();
 	        Criteria criteria = example.createCriteria();
 	        criteria.andUsernameEqualTo(username);
+	        criteria.andPasswordEqualTo(new String(password));
 	        List<User> list = userService.selectByExample(example);
-	        User user = list.get(0);
+	        User user = null;
+	        if(list.size()!=0){
+	            user = list.get(0);
+	        }
+	        System.out.println("user:"+JSON.toJSONString(user));
+	        if (null == user) {
+	        	try {
+					throw new AccountException("密码错误！");
+				} catch (AccountException e) {
+					e.printStackTrace();
+					throw new RuntimeException("密码错误！");
+				}
+	        }
+	    /*    else if(0==0){
+	            *//**
+	             * 如果用户的status为禁用。那么就抛出<code>DisabledAccountException</code>
+	             *//*
+	            throw new DisabledAccountException("帐号已经禁止登录！");
+	        }*/
 	        return new SimpleAuthenticationInfo(user, user.getPassword(),this.getClass().getName());//放入shiro.调用CredentialsMatcher检验密码
 	}
 

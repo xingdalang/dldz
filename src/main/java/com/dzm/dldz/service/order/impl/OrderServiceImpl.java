@@ -10,10 +10,13 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.dzm.dldz.bean.order.Order;
 import com.dzm.dldz.bean.order.OrderExample;
+import com.dzm.dldz.bean.order.OrderExample.Criteria;
+import com.dzm.dldz.bean.user.User;
 import com.dzm.dldz.dao.OrderMapper;
 import com.dzm.dldz.service.order.IOrderService;
 import com.dzm.dldz.util.Kuaidi100;
 import com.dzm.dldz.util.ReturnDate;
+import com.dzm.dldz.util.SessionUtil;
 @Service
 public class OrderServiceImpl implements IOrderService{
 	@Autowired
@@ -21,6 +24,8 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public List<Order> queryOrder() {
 		OrderExample example = new OrderExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCreatebyEqualTo(SessionUtil.getUserSession().getUserid());
 		List<Order> list = orderMapper.selectByExample(example);
 		for (Order order : list) {
 			String trans = order.getTrans();
@@ -31,9 +36,7 @@ public class OrderServiceImpl implements IOrderService{
 				}else{
 					// 快递结果前7位
 					String sub = add.substring(0,6);
-					System.out.println(sub);
 					if(sub.equals("快件已签收,")){
-						System.out.println("dfsdmfoadjs");
 						order.setAddress(add.substring(6,add.length()));
 					}
 				}
@@ -46,11 +49,12 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public ReturnDate addOrder(Order order) {
 		ReturnDate re = new ReturnDate();
-		Map<String, Object> tranMap = null;
 		try {
 			String add = getAdd(order.getTrans());
 			order.setAddress(add);
 			order.setCreateby(1L);
+			User user = SessionUtil.getUserSession();
+			order.setCreateby(user.getUserid());
 			order.setCreatetime(new Date());
 			order.setState(0);//0:已发货
 			int insert = orderMapper.insert(order);
@@ -65,7 +69,12 @@ public class OrderServiceImpl implements IOrderService{
 		}
 		return re;
 	}
-	
+	/**
+	 * 获取快递地址
+	 * @param trans
+	 * @return
+	 * @author xingguanghui
+	 */
 	private String getAdd(String trans){
 		Map<String, Object> tranMap = null;
 		String add = null;

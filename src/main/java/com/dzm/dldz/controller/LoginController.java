@@ -4,14 +4,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.dzm.dldz.bean.user.User;
 import com.dzm.dldz.util.ReturnDate;
 
 @Controller
@@ -43,6 +41,7 @@ public class LoginController {
 	@ResponseBody
     public ReturnDate loginUser(String username,String password,HttpSession session) {
 		System.out.println(""+username +"--"+password);
+		password = Md5Util.getMd5(password);
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
         Subject subject = SecurityUtils.getSubject();
         ReturnDate re = new ReturnDate();

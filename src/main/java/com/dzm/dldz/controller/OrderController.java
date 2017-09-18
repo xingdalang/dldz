@@ -36,6 +36,7 @@ public class OrderController {
 		if(qo==null){
 			qo = new OrderQO();
 		}
+		
 		List<Order> list = orderService.queryOrder();
 		model.addAttribute("list", list);
 		model.addAttribute("PageResult", qo);

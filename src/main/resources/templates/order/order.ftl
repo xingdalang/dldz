@@ -6,13 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="fyunli">
 <title>订单管理</title>
-	<link href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap.css" rel="stylesheet">
-	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery.form.min.js"></script>
+	<#include "/common/header.ftl"/>
 	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery.twbsPagination.min.js"></script>
-    <script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap-min.js"></script>
 	<script type="text/javascript" src="/js/order/order.js"></script>
-<#-- 	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/order/order.js"></script> -->
     <style>
         .input{ width: 60%; border: 1px solid #ccc; line-height:100%; height: 34px;border-radius: 4px; margin:5px 10px 10px 10px;}
         .select{ width: 20%; border: 1px solid #ccc; line-height:100%; height: 34px;border-radius: 4px; margin:5px 10px 10px 10px;}
@@ -72,10 +68,15 @@
 							增加订单
 						</h4>
 					</div>
-					<div class="modal-body text-center" style="line-height:1.5;" > 
-						订单:<input class="input" type="text" id="trans" name="trans" value=""/><br/>
-						客户:<input class="input" type="text" id="msg" name="msg" value=""/>
+					<form id="form" action="#">
+					<div class="modal-body text-center" style="line-height:1;" > 
+						单号:<input class="input" type="text" id="trans" name="trans" value=""/><br/>
+						客户:<input class="input" type="text" id="customer" name="customer" value=""/><br/>
+						电话:<input class="input" type="text" id="tel" name="tel" value=""/><br/>
+						价格:<input class="input" type="number" id="price" name="price" value=""/><br/>
+						数量:<input class="input" type="number" id="amount" name="amount" value=""/><br/>
 					</div>
+					</form>
 					<div class="modal-footer">
 						<button  type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button  id="addSubmit" type="button" class="btn btn-success" data-dismiss="modal">增加</button>

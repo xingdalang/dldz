@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title></title>
-    <link rel="stylesheet" href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/css/common.css"/>
-    <link rel="stylesheet" href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/css/login.css"/>
-	<link rel="stylesheet" href="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap.css">
-	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/bootstrap-min.js"></script>
-	<script type="text/javascript" src="http://dzgl-1254333912.cosgz.myqcloud.com/dldz/js/plugins/jquery.form.min.js"></script>
+    <#include "/common/header.ftl"/>
+    <link rel="stylesheet" href="/css/login/common.css"/>
+    <link rel="stylesheet" href="/css/login/login.css"/>
     <script type="text/javascript">
 	    $(function(){
 	    	$("#submit").click(function(){
@@ -31,13 +28,12 @@
 	    	})
 	    })
     </script>
-    
 </head>
 <body>
     <div id="login"></div>
     <div class="login_bg">
         <div id="logo">
-            <img src="/img/login/logo.png" alt=""/>
+            <img src="/img/login/logo.gif" alt=""/>
         </div>
         <form id="form" action="/login">
             <div class="userName">

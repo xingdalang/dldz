@@ -18,9 +18,7 @@ $(function(){
 		$.ajax({
 			url: "/order/add",            
 	        type: "POST",                      
-	        data: { msg: msg,
-	        		trans :trans
-	        		},
+	        data:  $("#form").serialize(),
 	        dataType: "json",
 	        success: function (response) {
 	        	if(response.result){
