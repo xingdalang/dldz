@@ -9,7 +9,6 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -33,7 +32,7 @@ public class Kuaidi100 {
 		map = (Map<String, Object>) JSON.parse(re);
 		return map;
 	}
-	@Test
+/*	@Test
 	public void testName() throws Exception {
 		Map<String, Object> tran = tran("667892293768");
 		System.out.println(tran.get("data"));
@@ -49,7 +48,7 @@ public class Kuaidi100 {
 		System.out.println(dd.get("context"));
 	}
 	
-	
+	*/
 	 public static String loadJSON(String url) {
 		          StringBuilder json = new StringBuilder();
 		          try {
