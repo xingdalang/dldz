@@ -18,6 +18,14 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
+import com.dzm.dldz.bean.module.Module;
+import com.dzm.dldz.bean.role.Role;
+import com.dzm.dldz.bean.user.User;
+import com.dzm.dldz.bean.user.UserExample;
+import com.dzm.dldz.bean.user.UserExample.Criteria;
+import com.dzm.dldz.service.module.IModuleService;
+import com.dzm.dldz.service.role.IRoleService;
+import com.dzm.dldz.service.user.IUserService;
 //http://www.cnblogs.com/hlhdidi/p/6376457.html
 public class AuthRealm extends AuthorizingRealm{
 	 @Autowired
