@@ -46,7 +46,7 @@
             </div>
             <div class="passWord">
                 <lable>密&nbsp;&nbsp;&nbsp;码：</lable>
-                <input type="password" name="pass" placeholder="请输入密码" pattern="[0-9A-Za-z]{6,25}" required/>
+                <input type="password" name="password" placeholder="请输入密码" pattern="[0-9A-Za-z]{6,25}" required/>
             </div>
             <div class="choose_box">
                 <div>

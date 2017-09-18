@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dzm.dldz.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.dzm.dldz.bean.user.User" >
-    <id column="userid" property="userid" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
+<mapper namespace="com.dzm.dldz.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.dzm.dldz.bean.role.Role" >
+    <id column="roleid" property="roleid" jdbcType="BIGINT" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    userid, username, password
+    roleid, rolename
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dzm.dldz.bean.user.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dzm.dldz.bean.role.RoleExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_user
+    from t_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +83,56 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_user
-    where userid = #{userid,jdbcType=BIGINT}
+    from t_role
+    where roleid = #{roleid,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_user
-    where userid = #{userid,jdbcType=BIGINT}
+    delete from t_role
+    where roleid = #{roleid,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.dzm.dldz.bean.user.UserExample" >
-    delete from t_user
+  <delete id="deleteByExample" parameterType="com.dzm.dldz.bean.role.RoleExample" >
+    delete from t_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dzm.dldz.bean.user.User" >
-    insert into t_user (userid, username, password
-      )
-    values (#{userid,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.dzm.dldz.bean.role.Role" >
+    insert into t_role (roleid, rolename)
+    values (#{roleid,jdbcType=BIGINT}, #{rolename,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dzm.dldz.bean.user.User" >
-    insert into t_user
+  <insert id="insertSelective" parameterType="com.dzm.dldz.bean.role.Role" >
+    insert into t_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        userid,
+      <if test="roleid != null" >
+        roleid,
       </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="password != null" >
-        password,
+      <if test="rolename != null" >
+        rolename,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        #{userid,jdbcType=BIGINT},
+      <if test="roleid != null" >
+        #{roleid,jdbcType=BIGINT},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.dzm.dldz.bean.user.UserExample" resultType="java.lang.Integer" >
-    select count(*) from t_user
+  <select id="countByExample" parameterType="com.dzm.dldz.bean.role.RoleExample" resultType="java.lang.Integer" >
+    select count(*) from t_role
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_user
+    update t_role
     <set >
-      <if test="record.userid != null" >
-        userid = #{record.userid,jdbcType=BIGINT},
+      <if test="record.roleid != null" >
+        roleid = #{record.roleid,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.rolename != null" >
+        rolename = #{record.rolename,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,30 +140,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_user
-    set userid = #{record.userid,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+    update t_role
+    set roleid = #{record.roleid,jdbcType=BIGINT},
+      rolename = #{record.rolename,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dzm.dldz.bean.user.User" >
-    update t_user
+  <update id="updateByPrimaryKeySelective" parameterType="com.dzm.dldz.bean.role.Role" >
+    update t_role
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="rolename != null" >
+        rolename = #{rolename,jdbcType=VARCHAR},
       </if>
     </set>
-    where userid = #{userid,jdbcType=BIGINT}
+    where roleid = #{roleid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dzm.dldz.bean.user.User" >
-    update t_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
-    where userid = #{userid,jdbcType=BIGINT}
+  <update id="updateByPrimaryKey" parameterType="com.dzm.dldz.bean.role.Role" >
+    update t_role
+    set rolename = #{rolename,jdbcType=VARCHAR}
+    where roleid = #{roleid,jdbcType=BIGINT}
   </update>
 </mapper>

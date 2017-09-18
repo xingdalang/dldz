@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.groovy.transform.SynchronizedASTTransformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +29,13 @@ public class OrderServiceImpl implements IOrderService{
 				if(add==null){
 					order.setAddress("点击查看");
 				}else{
-					order.setAddress(add.substring(6,add.length()));
+					// 快递结果前7位
+					String sub = add.substring(0,6);
+					System.out.println(sub);
+					if(sub.equals("快件已签收,")){
+						System.out.println("dfsdmfoadjs");
+						order.setAddress(add.substring(6,add.length()));
+					}
 				}
 				orderMapper.updateByPrimaryKey(order);
 			}
@@ -68,7 +73,7 @@ public class OrderServiceImpl implements IOrderService{
 			tranMap = Kuaidi100.tran(trans);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		String state = (String) tranMap.get("state");
 		String status = (String) tranMap.get("status");
 		if(status.equals("1")){

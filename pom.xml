@@ -77,5 +77,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+		
+		<!--  -->
+		<dependency>  
+            <groupId>org.apache.shiro</groupId>  
+            <artifactId>shiro-core</artifactId>  
+            <version>1.2.2</version>  
+        </dependency> 
+       <dependency>
+           <groupId>org.apache.shiro</groupId>
+           <artifactId>shiro-spring</artifactId>
+           <version>1.2.2</version>
+       </dependency>
+       
+        <!-- shiro ehcache -->
+       <dependency>
+           <groupId>org.apache.shiro</groupId>
+           <artifactId>shiro-ehcache</artifactId>
+           <version>1.2.2</version>
+       </dependency>
+       
+       
 	</dependencies>
 </project>
